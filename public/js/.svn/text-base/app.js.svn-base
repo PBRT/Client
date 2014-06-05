@@ -1,0 +1,49 @@
+'use strict';
+
+// Declare app level module which depends on filters, and services
+
+angular.module('myApp', [
+  'ngRoute',
+  'apiService',
+  'myApp.controllers',
+  'myApp.filters',
+  'myApp.services',
+  'myApp.directives',
+  'myApp.constants',
+  'google-maps',
+
+  // 3rd party dependencies
+  'btford.socket-io',
+  'snap'
+]).
+config(function ($routeProvider, $locationProvider, $httpProvider, snapRemoteProvider, SwiperProvider) {
+  $routeProvider.
+    when('/view2', {
+      templateUrl: 'partials/partial2',
+      controller: 'MyCtrl2'
+    }).
+    when('/login', {
+      templateUrl: 'partials/login',
+      controller: 'AuthCtrl'
+    }).
+    when('/home', {
+      templateUrl: 'partials/home',
+      controller: 'HomeCtrl'
+    }).
+    when('/map', {
+      templateUrl: 'partials/map',
+      controller: 'MapCtrl'
+    }).
+    otherwise({
+      redirectTo: '/login'
+    });
+
+ // snapRemoteProvider.globalOptions.disable = 'right';
+
+  $locationProvider.html5Mode(true);
+
+  //NOTE: CORS CREDENTIALS (nécessaire si on continue d'utiliser un deuxième server pour l'application)
+  $httpProvider.defaults.withCredentials = true;
+
+
+});

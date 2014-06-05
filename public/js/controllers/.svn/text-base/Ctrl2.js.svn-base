@@ -1,0 +1,66 @@
+
+
+app.controller('MyCtrl2',  function($scope, Superviseur, Auth, Compte, Evenement) {
+
+//TODO: Créer une page et manipuler les ressources : création d'événement, incident, organisateurs, etc...
+
+  $scope.superviseurs = "en attente";
+  $scope.currentUser = "null";
+  $scope.user = "null";
+
+  /*
+  Test de la partie Superviseur
+   */
+
+  $scope.getSuperviseurs = function(){
+     $scope.superviseurs=Superviseur.query();
+  };
+
+  $scope.getCurrentUser = function(){
+    $scope.currentUser = Auth.currentUser()
+  };
+
+  $scope.getUserFromServer = function(){
+    Compte.query({'username': "test" }, function(user){
+      console.log(user);
+      console.log(user[0].username);
+    });
+  };
+
+  $scope.createEvent = function(){
+    Evenement.query(function(evts){
+      console.log(evts)
+      evts[1].$addOrganisateur({organisateur_id: Auth.currentUser().id})
+    })
+  };
+
+  //NOTE: Si on utilise la méthode $ sur l'objet,  l'objet est remplacé par la réponse du serveur à retenir.
+  $scope.addOrganizedEvent = function(){
+    console.log(Auth.currentUser())
+    Superviseur.addEvent({'id': Auth.currentUser().id, 'nom' : $scope.organizedEventName}, function(data){
+      console.log(data)
+    })
+  };
+
+  $scope.test = function(){
+    Evenement.get({id: "533987a936dd803e14c83420"}, function(evts){
+        evts.getIncidents(function(incidents){
+            console.log(incidents[0]);
+            Evenement.getIncidenst({id: evenement_id})
+        })
+    })
+  };
+
+  $scope.createUser = function(){
+    console.log("test")
+    var user = new User();
+    user.username = $scope.username;
+    user.password = $scope.password;
+    user.role='test';
+    user.$save();
+  }
+
+
+
+});
+

@@ -1,0 +1,126 @@
+!!!
+html(ng-app="myApp")
+    head
+        meta(charset='utf8')
+        base(href='/')
+        title BANDS App
+
+        //CSS
+        link(rel='stylesheet', href='/css/snap.css')
+        link(rel='stylesheet', href='/css/idangerous.swiper.css')
+        link(rel='stylesheet', href='angular-snap.css')
+        link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css')
+        link(rel='stylesheet', href='/css/bootstrap.min.css')
+        link(rel='stylesheet', href='/css/app.css')
+
+
+        //Libs JS
+        script(src="http://code.jquery.com/jquery-1.8.2.min.js")
+        script(src='/socket.io/socket.io.js')
+        script(src='bower_components/angular/angular.js')
+        script(src="js/libs/angular-resource.min.js")
+        script(src='bower_components/angular-route/angular-route.js')
+        script(src='bower_components/angular-socket-io/socket.js')
+        script(src='//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js')
+        script(src='js/libs/maps-api.js')
+        script(src='js/libs/underscore.js')
+        script(src='js/libs/angular-google-maps.js')
+        script(src='js/libs/ui-bootstrap-tpls-0.9.0.js')
+
+        //Libs JS UI
+        script(src='js/libs/snap.js')
+        script(src='js/libs/angular-snap.js')
+        script(src='js/libs/idangerous.swiper-2.0.min.js')
+
+
+        //APP
+        script(src='js/app.js')
+
+        //Services
+        script(src='js/services/auth.js')
+        script(src='js/services/socket.js')
+        script(src='js/services/swiper.js')
+        script(src='js/services/constants.js')
+        script(src='js/services/groupeService.js')
+
+        //Ressources
+        script(src='js/resources/evenement.js')
+        script(src='js/resources/groupe.js')
+        script(src='js/resources/user.js')
+
+        //Controllers
+        script(src='js/controllers/MainCtrl.js')
+        script(src='js/controllers/SnapCtrl.js')
+        script(src='js/controllers/AuthCtrl.js')
+        script(src='js/controllers/HomeCtrl.js')
+        script(src='js/controllers/GroupeCtrl.js')
+
+        //Filters
+        script(src='js/filters/filters.js')
+
+        //Directives
+        script(src='js/directives/directives.js')
+
+    style
+        .navbar.center .navbar-inner {
+            text-align: center;
+        }
+        .navbar.center .navbar-inner .nav {
+            float: none;
+            display:inline-block;
+        }
+        .list-group-item {
+            width: 100%;
+            text-align: left;
+        }
+
+
+
+
+    body(ng-controller="MainCtrl")
+        //Snap Menu Gauche
+        snap-drawers(ng-if="userLoggedIn()")
+            div(snap-drawer='left')
+                ul(class="list-group")
+                    button.list-group-item(type="button", snap-toggle="left",ng-repeat="option in menu", style='text-align:left;width:100%',ng-click='{{option.function}}') {{option.function}}
+                        i.pull-left(class="{{option.icon}}", style="margin-right:10%")
+        //Snap Menu Droite
+        snap-drawers(ng-if="userLoggedIn()")
+            div(snap-drawer='right')
+                div(data-role="header", data-theme='c')
+                ul()
+                    li
+                        a(href='#') 1
+                    li
+                        a(href="#") 2
+
+        .container-fluid
+            .navbar.navbar-default.navbar-fixed-top(role='navigation',  ng-if='!error && !success')
+                a.navbar-brand.glyphicon.glyphicon-align-justify(snap-toggle="left", ng-if='userLoggedIn()')
+                .navbar-header
+                    a.navbar-brand(href="/home") {{currentPage}}
+            .navbar-fixed-top(role='navigation', ng-if='error || success')
+                a.navbar-brand.glyphicon.glyphicon-align-justify(snap-toggle="left", ng-if='userLoggedIn()')
+                    a.navbar-brand(href="/home") {{currentPage}}
+                    .alert.alert-danger(ng-if="error", style='height:40px')
+                        //button(type="button",class="close", ng-click="resetError()")&times;
+                        p(style='text-align: center') {{ error }}
+                    .alert.alert-success(ng-if="success", style='height:40px')
+                        //button(type="button",class="close", ng-click="resetSuccess()")&times;
+                        p(style='text-align: center') {{ success }}
+
+            snap-content#content(ng-controller="SnapCtrl", ng-init="initSnap()")
+
+                block body
+            .navbar.navbar-default.navbar-fixed-bottom(role='navigation', ng-if='userLoggedIn()')
+                    ul.nav.navbar-nav.nav-justified
+                        li(style="width:20%")
+                            a.glyphicon.glyphicon-user(ng-click="te()")
+                        li(style="width:20%")
+                            a.glyphicon.glyphicon-usd
+                        li(style="width:20%")
+                            a.glyphicon.glyphicon-calendar
+                        li(style="width:20%")
+                            a.glyphicon.glyphicon-bullhorn
+                        li(style="width:20%")
+                            a.glyphicon.glyphicon-picture

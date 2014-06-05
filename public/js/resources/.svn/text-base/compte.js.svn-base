@@ -1,0 +1,11 @@
+var resources = angular.module('apiService', ["ngResource"]);
+
+resources.factory("Compte", function ($resource, Server) {
+    return $resource(
+        Server.addr + "/compte/:id",
+        {id: "@id" },
+        {
+          "update": {method: "PUT"}
+        }
+    );
+});

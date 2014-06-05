@@ -1,0 +1,23 @@
+.tabs{
+    text-align: center
+}
+
+.tab{
+    font-family: 'Oswald', sans-serif;
+    display: inline-block;
+    font-size:30px;
+}
+
+.active-tab{
+    font-family: 'Oswald', sans-serif;
+    display: inline-block;
+    font-size:30px;
+    text-decoration:underline;
+}
+
+.row >.col-xs-12 > a.tab:hover:not(.active-tab),
+.row >.col-xs-12 > a.tab:focus:not(.active-tab) {
+    text-decoration: none;
+    background-color: inherit;
+}
+

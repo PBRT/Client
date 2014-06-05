@@ -1,0 +1,26 @@
+div()
+  a(ng-click="getSuperviseurs()") Get users
+  pre {{ superviseurs }}
+  a(ng-click="getCurrentUser()") Get Current User (from auth service)
+  pre {{currentUser}}
+  a(ng-click="getUserFromServer()") Get user from server
+  pre {{user}}
+  p Add Event
+  form(ng-submit="createEvent()")
+    input(type='text', ng-model="eventName")
+    input(type='submit')
+  p Add Organized Event
+  form(ng-submit="addOrganizedEvent()")
+    input(type='text', ng-model="organizedEventName")
+    input(type='submit')
+  a(ng-click="test()") ok
+  form(ng-submit="createUser()")
+    p nom
+    input(type='text', ng-model="username")
+    p password
+    input(type='submit', ng-model="password")
+    input(type='submit') Ok
+    a(ng-click="test()") GET EVENTS
+  a(ng-init="init()")
+
+

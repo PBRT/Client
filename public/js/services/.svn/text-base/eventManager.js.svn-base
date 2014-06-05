@@ -1,0 +1,21 @@
+/**
+ * Created by yolo on 4/8/14.
+ */
+'use strict';
+
+services.factory('eventManager', function($http, $location, $rootScope, $timeout, Superviseur, Evenement, Server) {
+
+    return {
+
+        //Récupération des évènement futurs de l'utilisateur courant
+        getFutureEvents : function(cb){
+           Superviseur.getCurrent(function(superviseur){
+               Superviseur.getOrganizedEvents({id : superviseur.user.id}, function(data){
+                   cb(data);
+               })
+           })
+        }
+
+
+    }
+})

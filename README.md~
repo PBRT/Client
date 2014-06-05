@@ -1,0 +1,63 @@
+# TO READ
+
+http://www.slideshare.net/fitc_slideshare/building-a-startup-stack-with-angularjs
+
+
+# Angular Socket.io Seed
+
+Utilisation de angular-socket-io-seed (cf. git) comme base de départ du projet, adapté et retravaillé.
+
+### Running the app
+
+Runs like a typical express app:
+
+```shell
+node app.js
+```
+
+### Running tests
+
+
+
+### Updating `angular.js`
+
+Alternatively, you can update AngularJS with [Bower](http://bower.io):
+
+```shell
+bower update angular
+```
+
+
+## Directory Layout
+
+    app.js                  --> app config
+    bower.json              --> for bower
+    package.json            --> for npm
+    public/                 --> all of the files to be used in on the client side
+      css/                  --> css files
+        app.css             --> default stylesheet
+      img/                  --> image files
+      js/                   --> javascript files
+        app.js              --> declare top-level app module
+        controllers/        --> application controllers
+        directives/         --> angular directives
+        filters/            --> angular filters
+        services/           --> angular services
+        resources/          --> angular resources
+        libs/               --> vendor libs (not coming from bower)
+      bower_components/
+        angular/            --> angular.js
+        angular-socket-io/  --> socket.io adapter for angular
+    routes/
+      index.js              --> route for serving HTML pages and partials
+    views/
+      index.jade            --> main page for app
+      layout.jade           --> doctype, title, head boilerplate
+      partials/             --> angular view partials (partial jade templates)
+        partial1.jade
+        partial2.jade
+
+
+
+## Contact
+

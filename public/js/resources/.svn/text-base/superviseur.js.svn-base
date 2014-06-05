@@ -1,0 +1,15 @@
+resources.factory("Superviseur", function ($resource, Server) {
+    return $resource(
+        Server.addr + "/superviseur/:id",
+        {id: "@id",
+        event_id: "@event_id" },
+        {
+            //TODO: ajouter les méthodes du SuperviseurController (côté serveur)
+            "update": {method: "PUT"},
+            "getOrganizedEvents" : {method: "GET", url : Server.addr + "/superviseur/:id/organized_events", isArray: true},
+            "addEvent": {method: "POST", url: Server.addr + "/superviseur/:id/organized_events"},
+            "removeEvent": {method: "DELETE", url : Server.addr + "/superviseur/:id/organized_events/:event_id"},
+            "getCurrent" : {method: "GET", url: Server.addr + "/auth"}
+        }
+    );
+});

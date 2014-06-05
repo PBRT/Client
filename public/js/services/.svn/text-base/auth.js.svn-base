@@ -1,0 +1,51 @@
+'use strict';
+
+var services = angular.module('myApp.services', []);
+
+//TODO: fonctionnement à revoir/améliorer
+services.factory('Auth', function($http, $location, $rootScope, $timeout, Superviseur, Server){
+    var currentUser=null;
+
+    return {
+      isLoggedIn: function(){ if(currentUser){
+              return true;
+          } else {
+              return false;
+          }
+      },
+
+     getCurrentUser: function(){
+         return currentUser;
+     },
+
+      load: function() {
+        Superviseur.getCurrent(function(data){
+          currentUser = data;
+          $rootScope.$broadcast("userLoggedIn");
+          $location.path("/home");
+        })
+      },
+
+      logout: function() {
+        $http.get(Server.addr + '/auth/logout').success(function(data){
+          console.log("You have been logged out.");
+          currentUser=null;
+          $rootScope.$broadcast("userLoggedOut");
+          $location.path("/");
+        });
+      },
+
+      login: function(inputs) {
+        var self=this;
+        return $http.post(Server.addr + '/auth/login', inputs).success(function(data){
+            if (data.error) {
+              console.log(data.error)
+              //return data.error;
+            } else  if (data.success){
+              console.log("You are signed in!");
+              self.load();
+          }
+        })
+      }
+  }
+})

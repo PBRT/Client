@@ -1,0 +1,15 @@
+/**
+ * Created by matthieu on 4/7/14.
+ */
+
+/* Controllers */
+app.controller('HomeCtrl', function ($scope, $location, Auth, snapRemote, socket, $rootScope, Superviseur, Compte, eventManager){
+
+
+    $scope.test= function(){
+        eventManager.getFutureEvents(function(data){
+            console.log(data);
+        })
+    }
+
+});

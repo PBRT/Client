@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/IMSC_GEO_POC/!svn/ver/317/InfoEvent/Superviseur/trunk/superviseur/views/partials
+END
+partial2.jade
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/IMSC_GEO_POC/!svn/ver/313/InfoEvent/Superviseur/trunk/superviseur/views/partials/partial2.jade
+END
+.gitignore
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/IMSC_GEO_POC/!svn/ver/251/InfoEvent/Superviseur/trunk/superviseur/views/partials/.gitignore
+END
+home.jade
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/IMSC_GEO_POC/!svn/ver/313/InfoEvent/Superviseur/trunk/superviseur/views/partials/home.jade
+END
+map.jade
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/IMSC_GEO_POC/!svn/ver/317/InfoEvent/Superviseur/trunk/superviseur/views/partials/map.jade
+END
+login.jade
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/IMSC_GEO_POC/!svn/ver/294/InfoEvent/Superviseur/trunk/superviseur/views/partials/login.jade
+END

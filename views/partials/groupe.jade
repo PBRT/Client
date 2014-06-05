@@ -1,0 +1,12 @@
+.container-fluid(ng-init="init()")
+    .col-xs-12
+        legend Evenements
+        ul.list-group
+            button.list-group-item(ng-repeat="event in groupe.evenements") {{event.titre}}
+    .col-xs-12
+        carousel(interval="myInterval",style="height: 10%")
+            slide(ng-repeat="slide in slides", active="slide.active")
+                img(ng-src="{{slide.image}}", style="margin:auto")
+                carousel-caption
+                    h4 {{slide.text}}
+

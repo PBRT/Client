@@ -1,0 +1,13 @@
+resources.factory("Incident", function ($resource, Server) {
+    return $resource(
+        Server.addr + "/evenement/:id/incidents/:incident_id",
+        {incident_id: "@incident_id", event_id: "@event_id" },
+        {
+            //TODO: A concevoir fonctionnement de la ressource incident
+            "update": {method: "PUT"},
+            "addEvent": {method: 'POST', url: Server.addr + "/user/add_event"},
+            "addOrganizedEvent": {method: 'POST', url: Server.addr + '/user/add_organized_event'},
+            "reviews": {'method': 'GET', 'params': {'reviews_only': "true"}, isArray: true}
+        }
+    );
+});

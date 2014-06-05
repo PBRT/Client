@@ -1,0 +1,18 @@
+resources.factory("Organisateur", function ($resource, Server) {
+    //TODO: a adapter pour organisateur
+    return $resource(
+        Server.addr + "/organisateur/:id",
+        {id: "@id",
+        event_id: "@event_id" },
+        {
+            //TODO: ajouter les méthodes du SuperviseurController (côté serveur)
+            "update": {method: "PUT"},
+            "addEvent": {method: "POST", url: Server.addr + "/superviseur/:id/organized_events"},
+            "removeEvent": {method: "DELETE", url : Server.addr + "/superviseur/:id/organized_events/:event_id"},
+            "getCurrent" : {method: "GET", url: Server.addr + "/auth"}
+         //   "addOrganizedEvent": {method: 'POST', url: Server.addr + '/user/add_organized_event'},
+          //  "reviews": {'method': 'GET', 'params': {'reviews_only': "true"}, isArray: true},
+          //  "update": {'method': 'PUT'}
+        }
+    );
+});

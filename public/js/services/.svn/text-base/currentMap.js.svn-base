@@ -1,0 +1,43 @@
+/**
+ * Created by matthieu on 4/8/14.
+ */
+'use strict';
+
+
+//TODO: fonctionnement à revoir/améliorer
+services.factory('CurrentMap', function($http, $location, $rootScope, $timeout, Superviseur, Server, Compte) {
+    //Variable destiné à recevoir l'instance de la map
+    var map = {};
+    var markers = {};
+
+    return {
+        setCurrentMap: function (map){
+            this.map = map;
+        },
+
+        setMarkerPosition: function (id, latitude, longitude) {
+            var self=this;
+            var pos = new google.maps.LatLng(latitude, longitude);
+            if (id in markers) {
+                //Si l'id existe déjà dans notre hashmap de markers on déplace le marker
+                markers[id].setPosition(pos);
+            } else {
+                //Sinon on créé un nouveau marker
+                markers[id] = new google.maps.Marker({
+                    position: pos,
+                    map: this.map
+                });
+                google.maps.event.addListener(markers[id], 'click', function () {
+                    Compte.get({id: id}, function (compte) {
+                        var info = new google.maps.InfoWindow({
+                            content: "<h3> " + compte.username + "</h3>"
+                        });
+                        info.open(self.map, markers[id]);
+                    })
+                });
+            }
+        }
+    }
+})
+
+

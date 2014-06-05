@@ -1,0 +1,105 @@
+!!!
+html(ng-app="myApp")
+  head
+    meta(charset='utf8')
+    base(href='/')
+    title Angular Socket.io Seed App
+
+    //
+    //    STYLESHEETS
+    //
+    link(rel='stylesheet', href='/css/app.css')
+    link(rel='stylesheet', href='/css/snap.css')
+    link(rel='stylesheet', href='/css/idangerous.swiper.css')
+    link(rel='stylesheet', href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.css")
+    link(rel='stylesheet', href='angular-snap.css')
+    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css')
+
+    //
+    //    SCRIPTS
+    //
+
+    //      Vendors
+    script(src="http://code.jquery.com/jquery-1.8.2.min.js")
+    script(src='js/libs/jqm-config.js')
+    script(src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.js")
+    script(src='/socket.io/socket.io.js')
+    script(src='bower_components/angular/angular.js')
+    script(src="js/libs/angular-resource.min.js")
+    script(src='bower_components/angular-route/angular-route.js')
+    script(src='bower_components/angular-socket-io/socket.js')
+    script(src='//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js')
+    script(src='js/libs/maps-api.js')
+    script(src='js/libs/underscore.js')
+    script(src='js/libs/angular-google-maps.js')
+
+
+    //      U-I only
+    script(src='js/libs/snap.js')
+    script(src='js/libs/angular-snap.js')
+    script(src='js/libs/idangerous.swiper-2.0.min.js')
+
+    //      Application
+    script(src='js/app.js')
+
+    //      Services
+    script(src='js/services/auth.js')
+    script(src='js/services/socket.js')
+    script(src='js/services/swiper.js')
+    script(src='js/services/constants.js')
+    script(src='js/services/eventManager.js')
+    script(src='js/resources/compte.js')
+    script(src='js/resources/superviseur.js')
+    script(src='js/resources/evenement.js')
+    script(src='js/services/currentEvent.js')
+    script(src='js/services/currentMap.js')
+
+
+    //      Controllers
+    script(src='js/controllers/MainCtrl.js')
+    script(src='js/controllers/Ctrl2.js')
+    script(src='js/controllers/SnapCtrl.js')
+    script(src='js/controllers/AuthCtrl.js')
+    script(src='js/controllers/HomeCtrl.js')
+    script(src='js/controllers/MapCtrl.js')
+
+     //      Filters
+    script(src='js/filters/filters.js')
+
+    //      Directives
+    script(src='js/directives/directives.js')
+
+
+  body
+    div(data-role="page", ng-controller="MainCtrl")
+
+        //Snap Menu Gauche
+        snap-drawers(ng-if="userLoggedIn()")
+            div(snap-drawer='left')
+                div(data-role="header", data-theme='c')
+                    h1 Menu
+                ul(data-filter="false", data-inset="true", data-role="listview")
+                    li
+                        a(href='#') Menu1
+                    li
+                        a(href="#") Menu2
+                    li
+                        a(ng-click="logoutUser()") Sign-Out
+
+        //Snap Menu Droite
+        snap-drawers(ng-if="userLoggedIn()")
+            div(snap-drawer='right')
+                div(data-role="header", data-theme='c')
+                    h1 Notifications
+                ul(data-filter="false", data-inset="true", data-role="listview")
+                    li
+                        a(href='#') 1
+                    li
+                        a(href="#") 2
+
+        snap-content#content(ng-controller="SnapCtrl", ng-init="initSnap()")
+            div(data-role="header", data-theme='c')
+              h1(style="text-align: center;") InfoEvent
+
+            div(data-role="content")
+              block body

@@ -1,0 +1,25 @@
+var app = angular.module('myApp.controllers', []);
+
+/* Controllers */
+app.controller('MainCtrl', function ($scope, $location, Auth, snapRemote, socket, $rootScope, Superviseur, Compte){
+
+  socket.on('send:time', function (data) {
+    $scope.time = data.time;
+  });
+
+  $scope.userLoggedIn = function(){
+    return Auth.isLoggedIn();
+  }
+
+
+  $scope.$on('authLoaded', function() {
+
+  });
+
+  // Fonction de logout
+  $scope.logoutUser = function() {
+    Auth.logout();
+    snapRemote.close();
+  }
+
+});

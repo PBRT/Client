@@ -1,0 +1,23 @@
+app.controller('SnapCtrl', function ($scope,  snapRemote, Auth){
+  $scope.snaper;
+
+  $scope.initSnap = function(){
+    snapRemote.getSnapper().then(function(snapper) {
+      $scope.snapper = snapper;
+      snapper.disable();
+    });
+  }
+
+  $scope.$on('userLoggedIn', function() {
+    if(Auth.isLoggedIn()){
+      $scope.snapper.enable();
+    }
+  });
+
+  $scope.$on('userLoggedOut', function(){
+    if(!Auth.isLoggedIn()){
+      $scope.snapper.disable();
+    }
+  });
+
+});

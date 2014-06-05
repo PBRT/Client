@@ -1,0 +1,26 @@
+/**
+ * Created by matthieu on 4/8/14.
+ */
+'use strict';
+
+
+//TODO: fonctionnement à revoir/améliorer
+services.factory('CurrentEvent', function($http, $location, $rootScope, $timeout, Superviseur, Server){
+    var organisateurs = {};
+    var superviseurs= {};
+    var participants = {};
+
+    return {
+        setCurrentEvent: function(){
+            //TODO: Mettre en place l'événement courant récupérer liste des participants, organisateurs, superviseurs
+        },
+
+        isLoggedIn: function () {
+            if (currentUser) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+})

@@ -1,0 +1,4 @@
+div()
+    pre {{ time }}
+    a(ng-click='test()') TEST
+    google-map(center="map.center", zoom="map.zoom",data-snap-ignore="true", draggable='true', control='map.control')

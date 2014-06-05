@@ -1,0 +1,34 @@
+/**
+ * Created by matthieu on 4/8/14.
+ */
+/* Controllers */
+app.controller('MenuCtrl', function ($scope, $location, Auth, snapRemote, socket, $rootScope, Superviseur, CurrentMap, Compte){
+//TODO: Créer un service MAP
+
+    /*
+     On surveille la variable $scope.map.control (qui va être affecté quand la map sera déclaré par la directive)
+     Une fois affecté on peut l'utiliser pour donner la map au service CurrentMap
+     */
+    $scope.actions = [
+        {
+            name:"menu1",
+            command: "menu1"
+        },
+        {
+            name:"menu2",
+            command: "menu2"
+        }
+    ]
+
+    $scope.menu1 = function(){
+        alert("good menu1 ");
+    }
+
+    $scope.menu2 = function(){
+        alert("good menu2");
+    }
+
+
+
+
+});

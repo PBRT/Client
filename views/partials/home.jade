@@ -1,0 +1,20 @@
+.container-fluid(ng-init="init()")
+    .col-xs-12
+        legend Vos Groupes actifs
+        ul.list-group
+            button.list-group-item(ng-repeat="groupe in utilisateur.groupes", ng-click='checkGroupe(groupe)') {{groupe.nom}}
+    .col-xs-12
+        legend Vos Evenements a suivres
+        ul.list-group
+            button.list-group-item(ng-repeat="evt in events", ng-click='item.action') {{evt.titre}}
+    .col-xs-12
+        legend Balance courante
+    .col-xs-12
+        legend Quelques photos
+        div(style="height: 305px")
+            carousel(interval="myInterval")
+                slide(ng-repeat="slide in slides", active="slide.active")
+                    img(ng-src="{{slide.image}}", style="margin:auto")
+                    carousel-caption
+                        h4 {{slide.text}}
+

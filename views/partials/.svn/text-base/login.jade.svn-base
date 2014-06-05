@@ -1,0 +1,47 @@
+div(jquery-mobile-tpl)
+
+  div(data-role="navbar")
+    ul
+      li
+        a(ng-class='{"ui-btn-active": activeIndex==0}',  ng-click="goToSignUp()") Sign-in
+      li
+        a(ng-class='{"ui-btn-active": activeIndex==1}', ng-click='goToSignIn()') Sign-up
+
+  .alert.alert-danger.alert-dismissable(ng-if="error")
+    button(type="button",class="close",data-dismiss="alert",aria-hidden="true")&times;
+    {{ error }}
+
+  .swiper-container(swipable)
+    .swiper-wrapper
+      .swiper-slide
+        .swiper-inner
+          h2(style="text-align:center") Sign-in
+          form(ng-submit='loginUser()')
+            label Username
+            input(type='text', name='username', ng-model="user.username")
+            label Password
+            input(type='password', name='password', ng-model="user.password")
+            input(type='submit', value="Login", class="btn btn-default") Login
+            pre(ng-if="userLoggedIn") {{ user }}
+
+      .swiper-slide
+        .swiper-inner
+          h2(style="text-align:center") Sign-up
+          form(ng-submit='registerUser()')
+            label Username
+            input(type='text', name='username', ng-model="newUser.username")
+            label Password
+            input(type='password', name='password', ng-model="newUser.password")
+            label Password Confirmation
+            input(type='password', name='password', ng-model="newUser.passwordConfirmation")
+            fieldset(data-role="controlgroup", data-type="horizontal", data-role="fieldcontain")
+              legend Choisir un type de compte
+              div
+                input(type='radio', name="role", id="role_superviseur", value='superviseur', ng-model="newUser.role")
+                label(for="role_superviseur") Superviseur
+                input(type='radio', name="role", id="role_staff", value='staff', ng-model="newUser.role")
+                label(for="role_staff") Staff
+            input(type='submit', value="Sign-Up", class="btn btn-default") Login
+            pre(ng-if="userLoggedIn") {{ newUser }}
+            pre {{ time }}
+

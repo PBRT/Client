@@ -1,0 +1,40 @@
+/**
+ * Created by matthieu on 4/8/14.
+ */
+/**
+ * Created by matthieu on 4/7/14.
+ */
+
+/* Controllers */
+app.controller('MapCtrl', function ($scope, $location, Auth, snapRemote, socket, $rootScope, Superviseur, CurrentMap, Compte){
+//TODO: Créer un service MAP
+
+    /*
+    On surveille la variable $scope.map.control (qui va être affecté quand la map sera déclaré par la directive)
+    Une fois affecté on peut l'utiliser pour donner la map au service CurrentMap
+     */
+    $scope.$watch('$scope.map.control', function(newVal, oldVal) {
+        CurrentMap.setCurrentMap($scope.map.control.getGMap())
+    });
+
+    socket.on('send:position', function (data) {
+        CurrentMap.setMarkerPosition(data.id, data.latitude, data.longitude);
+    });
+
+    $scope.map = {
+        center: {
+            latitude: 43.617,
+            longitude: 1.4150
+        },
+        zoom: 8,
+        control: {},
+        markers: {}
+    };
+
+    socket.on('send:time', function (data) {
+        $scope.time = data.time;
+    });
+
+
+
+});
